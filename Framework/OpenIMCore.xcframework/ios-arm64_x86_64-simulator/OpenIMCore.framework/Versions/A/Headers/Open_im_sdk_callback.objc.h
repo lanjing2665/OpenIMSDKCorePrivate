@@ -54,9 +54,6 @@
 - (void)onRecvMessageExtensionsAdded:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsChanged:(NSString* _Nullable)msgID reactionExtensionList:(NSString* _Nullable)reactionExtensionList;
 - (void)onRecvMessageExtensionsDeleted:(NSString* _Nullable)msgID reactionExtensionKeyList:(NSString* _Nullable)reactionExtensionKeyList;
-/**
- * deprecated
- */
 - (void)onRecvMessageRevoked:(NSString* _Nullable)msgID;
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
@@ -76,9 +73,6 @@
 @protocol Open_im_sdk_callbackOnConversationListener <NSObject>
 - (void)onConversationChanged:(NSString* _Nullable)conversationList;
 - (void)onNewConversation:(NSString* _Nullable)conversationList;
-/**
- * OnSyncServerProgress(progress int)
- */
 - (void)onSyncServerFailed;
 - (void)onSyncServerFinish;
 - (void)onSyncServerStart;
@@ -138,9 +132,11 @@
 - (void)onInviteeAcceptedByOtherDevice:(NSString* _Nullable)inviteeAcceptedCallback;
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
+- (void)onReceiveCustomSignal:(NSString* _Nullable)CustomSignalCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
+- (void)onStreamChange:(NSString* _Nullable)OnStreamChangeCallback;
 @end
 
 @protocol Open_im_sdk_callbackOnUserListener <NSObject>
@@ -296,10 +292,25 @@
 @property(strong, readonly) _Nonnull id _ref;
 
 - (nonnull instancetype)initWithRef:(_Nonnull id)ref;
+/**
+ * 好友申请被同意
+ */
 - (void)onFriendApplicationAccepted:(NSString* _Nullable)groupApplication;
+/**
+ * 有人申请添加你为好友
+ */
 - (void)onFriendApplicationAdded:(NSString* _Nullable)friendApplication;
+/**
+ * 进群申请被同意
+ */
 - (void)onGroupApplicationAccepted:(NSString* _Nullable)groupApplication;
+/**
+ * 有人申请进群
+ */
 - (void)onGroupApplicationAdded:(NSString* _Nullable)groupApplication;
+/**
+ * 收到新消息
+ */
 - (void)onRecvNewMessage:(NSString* _Nullable)message;
 @end
 
@@ -331,9 +342,11 @@
 - (void)onInviteeAcceptedByOtherDevice:(NSString* _Nullable)inviteeAcceptedCallback;
 - (void)onInviteeRejected:(NSString* _Nullable)inviteeRejectedCallback;
 - (void)onInviteeRejectedByOtherDevice:(NSString* _Nullable)inviteeRejectedCallback;
+- (void)onReceiveCustomSignal:(NSString* _Nullable)CustomSignalCallback;
 - (void)onReceiveNewInvitation:(NSString* _Nullable)receiveNewInvitationCallback;
 - (void)onRoomParticipantConnected:(NSString* _Nullable)onRoomParticipantConnectedCallback;
 - (void)onRoomParticipantDisconnected:(NSString* _Nullable)onRoomParticipantDisconnectedCallback;
+- (void)onStreamChange:(NSString* _Nullable)OnStreamChangeCallback;
 @end
 
 @interface Open_im_sdk_callbackOnUserListener : NSObject <goSeqRefInterface, Open_im_sdk_callbackOnUserListener> {
